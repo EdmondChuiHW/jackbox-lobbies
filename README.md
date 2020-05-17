@@ -1,4 +1,6 @@
 ## TODO
+- [ ] error handling
+- [ ] mobile support
 - [ ] don't use implicit OAuth
 - [ ] memorize OAuth token
 - [ ] show "show me moar" loading progress
