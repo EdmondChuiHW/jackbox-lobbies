@@ -19,6 +19,7 @@ export default function SignedInApp() {
   const api = useTwitchApi();
   const [selectedNames, setSelectedNames] = useState(new Set(["DRAWFUL 2"]))
   const [games, setGames] = useState([]);
+  const [gameIdToName, setGameIdToName] = useState(new Map());
   const [streams, setStreams] = useState([]);
   const [fetchNext, setFetchNext] = useState(() => () => { });
 
@@ -29,6 +30,7 @@ export default function SignedInApp() {
       if (didCancel) return;
 
       setGames(incGames);
+      setGameIdToName(new Map(incGames.map(({ id, name }) => [id, name])));
     })();
 
     return () => didCancel = true;
@@ -62,10 +64,7 @@ export default function SignedInApp() {
     />
     <ImageTextRecognitionProvider>
       <div style={{display: "flex", flexWrap: "wrap"}}>
-        {streams.map(stream => {
-          const gameName = games.find(g => g.id === stream.game_id)?.name;
-          return <Stream key={stream.id} stream={stream} gameName={gameName} />
-        })}
+        {streams.map(stream => <Stream key={stream.id} stream={stream} gameName={gameIdToName.get(stream.game_id)} />)}
       </div>
     </ImageTextRecognitionProvider>
     <Button variant="contained" size="large" color="primary" onClick={fetchNext} style={{ position: "fixed", bottom: 0 }}>
