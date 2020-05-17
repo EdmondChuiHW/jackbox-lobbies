@@ -18,7 +18,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function Stream({ stream }) {
+export default function Stream({ stream, gameName }) {
   const classes = useStyles();
   const { blob, imgSrc } = useImgFetch(stream.thumbnail_url);
   const result = useImageTextRecognition(blob);
@@ -39,11 +39,11 @@ export default function Stream({ stream }) {
         />
         {isResultPending && <LinearProgress />}
         <CardContent style={{display: "flex", flexDirection: "row"}}>
-          <Typography variant="caption" color="textSecondary" component="span">
-            {stream.user_name}
+          <Typography variant="body1" color="textSecondary" component="span">
+            {gameName || stream.user_name}
           </Typography>
           <span style={{flex: 1}}/>
-          <Typography variant="caption" color="textSecondary" component="span">
+          <Typography variant="body1" color="textSecondary" component="span">
             watching now: {stream.viewer_count}
           </Typography>
         </CardContent>

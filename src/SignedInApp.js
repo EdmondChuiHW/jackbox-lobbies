@@ -18,14 +18,26 @@ const GAME_NAMES = [
 export default function SignedInApp() {
   const api = useTwitchApi();
   const [selectedNames, setSelectedNames] = useState(new Set(["DRAWFUL 2"]))
+  const [games, setGames] = useState([]);
   const [streams, setStreams] = useState([]);
   const [fetchNext, setFetchNext] = useState(() => () => { });
 
   useEffect(() => {
     let didCancel = false;
     (async () => {
-      const gameIds = await api.getGameIds(selectedNames);
-      const result = await api.getStreams(gameIds);
+      const incGames = await api.getGames(selectedNames);
+      if (didCancel) return;
+
+      setGames(incGames);
+    })();
+
+    return () => didCancel = true;
+  }, [api, selectedNames])
+
+  useEffect(() => {
+    let didCancel = false;
+    (async () => {
+      const result = await api.getStreams(games.map(g => g.id));
       if (didCancel) return;
       
       console.log(result.streams);
@@ -40,7 +52,7 @@ export default function SignedInApp() {
     }
 
     return () => didCancel = true;
-  }, [api, selectedNames]);
+  }, [api, games, selectedNames]);
 
   return <>
     <GamesSelector
@@ -50,7 +62,10 @@ export default function SignedInApp() {
     />
     <ImageTextRecognitionProvider>
       <div style={{display: "flex", flexWrap: "wrap"}}>
-        {streams.map(stream => <Stream key={stream.id} stream={stream} />)}
+        {streams.map(stream => {
+          const gameName = games.find(g => g.id === stream.game_id)?.name;
+          return <Stream key={stream.id} stream={stream} gameName={gameName} />
+        })}
       </div>
     </ImageTextRecognitionProvider>
     <Button variant="contained" size="large" color="primary" onClick={fetchNext} style={{ position: "fixed", bottom: 0 }}>

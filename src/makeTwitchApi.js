@@ -25,7 +25,7 @@ function makeTwitchApi(clientId) {
         },
       };
     },
-    async getGameIds(names) {
+    async getGames(names) {
       const params = new URLSearchParams();
       names.forEach(name => params.append("name", name));
       const resp = await fetch("https://api.twitch.tv/helix/games?" + params, {
@@ -33,7 +33,7 @@ function makeTwitchApi(clientId) {
       });
       const { data } = await resp.json();
 
-      return data?.map(data => data.id) || [];
+      return data || [];
     },
     getAuthUrl() {
       const params = new URLSearchParams();
