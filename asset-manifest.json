@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/jackbox-lobbies/static/css/main.5f361e03.chunk.css",
-    "main.js": "/jackbox-lobbies/static/js/main.d0944eb6.chunk.js",
-    "main.js.map": "/jackbox-lobbies/static/js/main.d0944eb6.chunk.js.map",
+    "main.js": "/jackbox-lobbies/static/js/main.6868675c.chunk.js",
+    "main.js.map": "/jackbox-lobbies/static/js/main.6868675c.chunk.js.map",
     "runtime-main.js": "/jackbox-lobbies/static/js/runtime-main.3c4083ae.js",
     "runtime-main.js.map": "/jackbox-lobbies/static/js/runtime-main.3c4083ae.js.map",
     "static/js/2.f0075294.chunk.js": "/jackbox-lobbies/static/js/2.f0075294.chunk.js",
     "static/js/2.f0075294.chunk.js.map": "/jackbox-lobbies/static/js/2.f0075294.chunk.js.map",
     "index.html": "/jackbox-lobbies/index.html",
-    "precache-manifest.c48b5117c6ad70ce8a11112d0ef3b0f3.js": "/jackbox-lobbies/precache-manifest.c48b5117c6ad70ce8a11112d0ef3b0f3.js",
+    "precache-manifest.e6e331fca0aa3200c1e680e66e7561d4.js": "/jackbox-lobbies/precache-manifest.e6e331fca0aa3200c1e680e66e7561d4.js",
     "service-worker.js": "/jackbox-lobbies/service-worker.js",
     "static/css/main.5f361e03.chunk.css.map": "/jackbox-lobbies/static/css/main.5f361e03.chunk.css.map",
     "static/js/2.f0075294.chunk.js.LICENSE.txt": "/jackbox-lobbies/static/js/2.f0075294.chunk.js.LICENSE.txt"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.3c4083ae.js",
     "static/js/2.f0075294.chunk.js",
     "static/css/main.5f361e03.chunk.css",
-    "static/js/main.d0944eb6.chunk.js"
+    "static/js/main.6868675c.chunk.js"
   ]
 }
