@@ -25,6 +25,8 @@ export default function Stream({ stream }) {
   const isResultPending = !result;
   const isLikelyLobby = result?.lines.some(l => l.text.match(/everybody|to start|same players|room|on your/i));
 
+  if (!isResultPending && !isLikelyLobby) return <></>;
+
   const twitchStreamUrl = `https://twitch.tv/${stream.user_name.toLowerCase()}`;
 
   return <>
