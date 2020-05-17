@@ -4,6 +4,7 @@ https://EdmondChuiHW.github.io/jackbox-lobbies
 ![screenshoot of the web app](https://user-images.githubusercontent.com/1967998/82135648-437df800-97c2-11ea-8094-cb25f7285bce.png)
 
 ## TODO
+- [ ] fix bug: unchecking game doesn't remove from list
 - [ ] error handling
 - [ ] mobile support
 - [ ] don't use implicit OAuth
