@@ -38,7 +38,7 @@ function makeTwitchApi(clientId) {
     getAuthUrl() {
       const params = new URLSearchParams();
       params.append("client_id", clientId);
-      params.append("redirect_uri", window.location.href);
+      params.append("redirect_uri", window.location.origin);
       params.append("response_type", "token");
       params.append("scope", "");
 
