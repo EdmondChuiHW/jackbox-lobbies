@@ -32,9 +32,11 @@ export default function SignedInApp() {
       handleResult(result);
     })();
 
-    function handleResult(result) {
-      setStreams(prev => uniqueIds([...prev, ...result.streams]));
-      setFetchNext(() => async () => handleResult(await result.fetchNext()));
+    function handleResult(result, concat = false) {
+      concat
+        ? setStreams(prev => uniqueIds([...prev, ...result.streams]))
+        : setStreams(result.streams);
+      setFetchNext(() => async () => handleResult(await result.fetchNext(), true));
     }
 
     return () => didCancel = true;
@@ -48,9 +50,7 @@ export default function SignedInApp() {
     />
     <ImageTextRecognitionProvider>
       <div style={{display: "flex", flexWrap: "wrap"}}>
-        {streams.map(stream => (
-          <Stream key={stream.id} stream={stream} />
-        ))}
+        {streams.map(stream => <Stream key={stream.id} stream={stream} />)}
       </div>
     </ImageTextRecognitionProvider>
     <Button variant="contained" size="large" color="primary" onClick={fetchNext} style={{ position: "fixed", bottom: 0 }}>
