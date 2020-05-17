@@ -1,6 +1,7 @@
 import { Container, LinearProgress, Typography } from "@material-ui/core";
 import React, { useContext, useEffect, useState } from "react";
-import { createScheduler, createWorker, setLogging } from 'tesseract.js';
+import { setLogging } from 'tesseract.js';
+import createCancelableScheduler from "./createCancelableScheduler";
 
 setLogging(true);
 const ImageTextRecognitionContext = React.createContext();
@@ -12,25 +13,12 @@ export function ImageTextRecognitionProvider({ children, numWorkers = 20 }) {
 
   useEffect(() => {
     setWorkersReadyCount(0);
-    const scheduler = createScheduler();
+    const scheduler = createCancelableScheduler({workersPoolSize: numWorkers});
     (async () => {
-      await Promise.all(Array(numWorkers).fill().map(() => createWorker()).map(async worker => {
-        await worker.load();
-        await worker.loadLanguage('eng');
-        await worker.initialize('eng');
-        await worker.setParameters({
-          tessjs_create_hocr: '0',
-          tessjs_create_tsv: '0',
-        });
-        scheduler.addWorker(worker);
-
-        setWorkersReadyCount(prevCount => prevCount + 1);
-      }));
+      await scheduler.init();
 
       setReadyScheduler(scheduler);
     })();
-
-    return () => scheduler.terminate();
   }, [numWorkers]);
 
   return <ImageTextRecognitionContext.Provider value={readyScheduler}>
@@ -57,17 +45,18 @@ export default function useImageTextRecognition(imageLike, options) {
     if (!scheduler || !imageLike) return;
     
     let didCancel = false;
+    const [resultPromise, cancelFn] = scheduler.addRecognitionJob(imageLike, options);
+
     (async () => {
-      const { data } = await scheduler.addJob('recognize', imageLike, options);
+      const { data } = await resultPromise;
       if (didCancel) return;
 
       setResult(data);
     })();
     
     return () => {
-      console.log("canceled");
-      
-      didCancel = true
+      didCancel = true;
+      cancelFn();
     };
   }, [imageLike, options, scheduler]);
 
