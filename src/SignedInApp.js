@@ -17,13 +17,19 @@ const GAME_NAMES = [
 
 export default function SignedInApp() {
   const api = useTwitchApi();
-  const [selectedNames, setSelectedNames] = useState(new Set(["DRAWFUL 2"]))
+  const [selectedNames, setSelectedNames] = useState(new Set([]))
   const [games, setGames] = useState([]);
   const [gameIdToName, setGameIdToName] = useState(new Map());
   const [streams, setStreams] = useState([]);
-  const [fetchNext, setFetchNext] = useState(() => () => { });
+  const [fetchNext, setFetchNext] = useState(() => () => undefined);
 
   useEffect(() => {
+    if (!selectedNames.size) {
+      setGames([]);
+      setGameIdToName(new Map());
+      return;
+    }
+
     let didCancel = false;
     (async () => {
       const incGames = await api.getGames(selectedNames);
@@ -37,12 +43,17 @@ export default function SignedInApp() {
   }, [api, selectedNames])
 
   useEffect(() => {
+    if (!games.length) {
+      setStreams([]);
+      setFetchNext(() => () => undefined);
+      return;
+    }
+
     let didCancel = false;
     (async () => {
       const result = await api.getStreams(games.map(g => g.id));
       if (didCancel) return;
       
-      console.log(result.streams);
       handleResult(result);
     })();
 
@@ -54,7 +65,7 @@ export default function SignedInApp() {
     }
 
     return () => didCancel = true;
-  }, [api, games, selectedNames]);
+  }, [api, games]);
 
   return <>
     <GamesSelector
@@ -62,6 +73,7 @@ export default function SignedInApp() {
       selectedNames={selectedNames}
       onCheckboxChange={onGameSelectChange}
     />
+    <div>Checking {streams.length} streams…</div>
     <ImageTextRecognitionProvider>
       <div style={{display: "flex", flexWrap: "wrap"}}>
         {streams.map(stream => <Stream key={stream.id} stream={stream} gameName={gameIdToName.get(stream.game_id)} />)}

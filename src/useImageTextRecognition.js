@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { createScheduler, createWorker } from 'tesseract.js';
+import { createScheduler, createWorker, setLogging } from 'tesseract.js';
 
 const ImageTextRecognitionContext = React.createContext();
 ImageTextRecognitionContext.displayName = "ImageTextRecognitionContext";
@@ -8,6 +8,7 @@ export function ImageTextRecognitionProvider({ children }) {
   const [readyScheduler, setReadyScheduler] = useState();
 
   useEffect(() => {
+    setLogging(true);
     const scheduler = createScheduler();
     (async () => {
       await Promise.all([
@@ -52,7 +53,6 @@ export default function useImageTextRecognition(imageLike, options) {
       if (didCancel) return;
 
       setResult(data);
-      console.log(data);
     })();
     
     return () => {

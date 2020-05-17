@@ -79,7 +79,6 @@ async function fetchImg(thumbnailUrl, width = 1920, height = 1080, retryCount = 
   const resp = await fetch(url, {cache: "reload"});
   const isCached = ageOfResourceInSeconds(resp.headers) > MAX_ACCEPTABLE_AGE_IN_SECONDS;
 
-  console.log(retryCount);
   if (isCached && retryCount < MAX_RETRIES) return fetchImg(thumbnailUrl, width + 1, height, retryCount + 1);
 
   const blob = await resp.blob();
