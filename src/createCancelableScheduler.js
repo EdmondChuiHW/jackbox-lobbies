@@ -30,7 +30,8 @@ export default function createCancelableScheduler({ workersPoolSize = 20 } = {})
 
         const workerId = jobIdToWorkerId.get(jobId);
         jobIdToWorkerId.delete(jobId);
-        await workersPool.killWorkerId(workerId);
+        workersPool.freeWorkerId(workerId);
+        // await workersPool.killWorkerId(workerId);
       }
 
       return [queueJob(), terminateFn];
