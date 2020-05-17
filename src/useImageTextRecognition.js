@@ -1,4 +1,4 @@
-import { LinearProgress, Typography } from "@material-ui/core";
+import { Container, LinearProgress, Typography } from "@material-ui/core";
 import React, { useContext, useEffect, useState } from "react";
 import { createScheduler, createWorker, setLogging } from 'tesseract.js';
 
@@ -6,7 +6,7 @@ setLogging(true);
 const ImageTextRecognitionContext = React.createContext();
 ImageTextRecognitionContext.displayName = "ImageTextRecognitionContext";
 
-export function ImageTextRecognitionProvider({ children, numWorkers = 15 }) {
+export function ImageTextRecognitionProvider({ children, numWorkers = 20 }) {
   const [readyScheduler, setReadyScheduler] = useState();
   const [workersReadyCount, setWorkersReadyCount] = useState(0);
 
@@ -38,8 +38,11 @@ export function ImageTextRecognitionProvider({ children, numWorkers = 15 }) {
       ? children
       : (
         <>
-          <LinearProgress value={(workersReadyCount / numWorkers) * 100} variant="determinate" />
-          <Typography variant="h5">Loading image recognition magic…</Typography>
+          <Container maxWidth="sm">
+            <LinearProgress value={(workersReadyCount / numWorkers) * 100} variant="determinate" />
+            <img src={process.env.PUBLIC_URL + "/loading_workers.svg"} alt="Loading…" width="50%" style={{margin: 16}} />
+            <Typography variant="h6">Loading image recognition magic…</Typography>
+          </Container>
         </>
       )
     }
