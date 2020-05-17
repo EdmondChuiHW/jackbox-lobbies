@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "/jackbox-lobbies/static/css/main.5f361e03.chunk.css",
-    "main.js": "/jackbox-lobbies/static/js/main.0f9966cf.chunk.js",
-    "main.js.map": "/jackbox-lobbies/static/js/main.0f9966cf.chunk.js.map",
+    "main.js": "/jackbox-lobbies/static/js/main.2032beec.chunk.js",
+    "main.js.map": "/jackbox-lobbies/static/js/main.2032beec.chunk.js.map",
     "runtime-main.js": "/jackbox-lobbies/static/js/runtime-main.3c4083ae.js",
     "runtime-main.js.map": "/jackbox-lobbies/static/js/runtime-main.3c4083ae.js.map",
-    "static/js/2.04985918.chunk.js": "/jackbox-lobbies/static/js/2.04985918.chunk.js",
-    "static/js/2.04985918.chunk.js.map": "/jackbox-lobbies/static/js/2.04985918.chunk.js.map",
+    "static/js/2.e216eb8a.chunk.js": "/jackbox-lobbies/static/js/2.e216eb8a.chunk.js",
+    "static/js/2.e216eb8a.chunk.js.map": "/jackbox-lobbies/static/js/2.e216eb8a.chunk.js.map",
     "index.html": "/jackbox-lobbies/index.html",
-    "precache-manifest.5d4cfae6dedc976d4e4d2a60067be90e.js": "/jackbox-lobbies/precache-manifest.5d4cfae6dedc976d4e4d2a60067be90e.js",
+    "precache-manifest.c28d330ff83adaf7e4995bb7f8b18e16.js": "/jackbox-lobbies/precache-manifest.c28d330ff83adaf7e4995bb7f8b18e16.js",
     "service-worker.js": "/jackbox-lobbies/service-worker.js",
     "static/css/main.5f361e03.chunk.css.map": "/jackbox-lobbies/static/css/main.5f361e03.chunk.css.map",
-    "static/js/2.04985918.chunk.js.LICENSE.txt": "/jackbox-lobbies/static/js/2.04985918.chunk.js.LICENSE.txt"
+    "static/js/2.e216eb8a.chunk.js.LICENSE.txt": "/jackbox-lobbies/static/js/2.e216eb8a.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.3c4083ae.js",
-    "static/js/2.04985918.chunk.js",
+    "static/js/2.e216eb8a.chunk.js",
     "static/css/main.5f361e03.chunk.css",
-    "static/js/main.0f9966cf.chunk.js"
+    "static/js/main.2032beec.chunk.js"
   ]
 }
