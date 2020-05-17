@@ -18,8 +18,7 @@ export default function createCancelableScheduler({ workersPoolSize = 20 } = {})
         jobIdToWorkerId.set(jobId, worker.id);
 
         try {
-          await worker.recognize(imageLike, options, jobId);
-          return await worker.recognize(imageLike, options, jobId + "dup");
+          return await worker.recognize(imageLike, options, jobId);
         } finally {
           jobIdToWorkerId.delete(jobId);
           workersPool.freeWorkerId(worker.id);
@@ -93,7 +92,11 @@ function makeWorkersPool() {
   }
 
   async function addWorker() {
-    const worker = createWorker();
+    const worker = createWorker({
+      workerPath: process.env.PUBLIC_URL + '/tesseract/worker.min.js',
+      workerBlobURL: false,
+      corePath: process.env.PUBLIC_URL + `/tesseract/tesseract-core.${typeof WebAssembly === 'object' ? 'wasm' : 'asm'}.js`,
+    });
     await worker.load();
     await worker.loadLanguage('eng');
     await worker.initialize('eng');
