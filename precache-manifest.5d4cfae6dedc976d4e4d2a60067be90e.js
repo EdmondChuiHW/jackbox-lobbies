@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "2df078382cbdae595b8253ed0215cde3",
+    "revision": "c7ccbffcfd83a27e0174367306f4d835",
     "url": "/jackbox-lobbies/index.html"
   },
   {
-    "revision": "4a0647db001d989f774d",
+    "revision": "6055a479c0c38b5a5116",
     "url": "/jackbox-lobbies/static/css/main.5f361e03.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/jackbox-lobbies/static/js/2.04985918.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "4a0647db001d989f774d",
-    "url": "/jackbox-lobbies/static/js/main.87ebc43c.chunk.js"
+    "revision": "6055a479c0c38b5a5116",
+    "url": "/jackbox-lobbies/static/js/main.0f9966cf.chunk.js"
   },
   {
     "revision": "321e106e669b924081b3",
