@@ -94,9 +94,9 @@ function makeWorkersPool() {
 
   async function addWorker() {
     const worker = createWorker({
-      workerPath: process.env.PUBLIC_URL + '/tesseract/worker.min.js',
-      workerBlobURL: false,
-      corePath: process.env.PUBLIC_URL + `/tesseract/tesseract-core.${typeof WebAssembly === 'object' ? 'wasm' : 'asm'}.js`,
+      // workerPath: process.env.PUBLIC_URL + '/tesseract/worker.min.js',
+      // workerBlobURL: false,
+      // corePath: process.env.PUBLIC_URL + `/tesseract/tesseract-core.${typeof WebAssembly === 'object' ? 'wasm' : 'asm'}.js`,
     });
     await worker.load();
     await worker.loadLanguage('eng');
