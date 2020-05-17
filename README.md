@@ -1,3 +1,8 @@
+## Scan Twitch live-streams for Jackbox Lobbies
+https://EdmondChuiHW.github.io/jackbox-lobbies
+
+![screenshoot of the web app](https://user-images.githubusercontent.com/1967998/82135648-437df800-97c2-11ea-8094-cb25f7285bce.png)
+
 ## TODO
 - [ ] error handling
 - [ ] mobile support
