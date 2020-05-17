@@ -1,24 +1,20 @@
+import { LinearProgress, Typography } from "@material-ui/core";
 import React, { useContext, useEffect, useState } from "react";
 import { createScheduler, createWorker, setLogging } from 'tesseract.js';
 
+setLogging(true);
 const ImageTextRecognitionContext = React.createContext();
 ImageTextRecognitionContext.displayName = "ImageTextRecognitionContext";
 
-export function ImageTextRecognitionProvider({ children }) {
+export function ImageTextRecognitionProvider({ children, numWorkers = 15 }) {
   const [readyScheduler, setReadyScheduler] = useState();
+  const [workersReadyCount, setWorkersReadyCount] = useState(0);
 
   useEffect(() => {
-    setLogging(true);
+    setWorkersReadyCount(0);
     const scheduler = createScheduler();
     (async () => {
-      await Promise.all([
-        createWorker(),
-        createWorker(),
-        createWorker(),
-        createWorker(),
-        createWorker(),
-        createWorker(),
-      ].map(async worker => {
+      await Promise.all(Array(numWorkers).fill().map(() => createWorker()).map(async worker => {
         await worker.load();
         await worker.loadLanguage('eng');
         await worker.initialize('eng');
@@ -27,16 +23,26 @@ export function ImageTextRecognitionProvider({ children }) {
           tessjs_create_tsv: '0',
         });
         scheduler.addWorker(worker);
+
+        setWorkersReadyCount(prevCount => prevCount + 1);
       }));
 
       setReadyScheduler(scheduler);
-
-      return () => scheduler.terminate();
     })();
-  }, []);
+
+    return () => scheduler.terminate();
+  }, [numWorkers]);
 
   return <ImageTextRecognitionContext.Provider value={readyScheduler}>
-    {children}
+    {readyScheduler
+      ? children
+      : (
+        <>
+          <LinearProgress value={(workersReadyCount / numWorkers) * 100} variant="determinate" />
+          <Typography variant="h5">Loading image recognition magic…</Typography>
+        </>
+      )
+    }
   </ImageTextRecognitionContext.Provider>;
 };
 

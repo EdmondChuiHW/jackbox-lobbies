@@ -68,20 +68,20 @@ export default function SignedInApp() {
   }, [api, games]);
 
   return <>
-    <GamesSelector
-      names={GAME_NAMES}
-      selectedNames={selectedNames}
-      onCheckboxChange={onGameSelectChange}
-    />
-    <div>Checking {streams.length} streams…</div>
     <ImageTextRecognitionProvider>
+      <GamesSelector
+        names={GAME_NAMES}
+        selectedNames={selectedNames}
+        onCheckboxChange={onGameSelectChange}
+      />
+      <div>Checking {streams.length} streams…</div>
       <div style={{display: "flex", flexWrap: "wrap"}}>
         {streams.map(stream => <Stream key={stream.id} stream={stream} gameName={gameIdToName.get(stream.game_id)} />)}
       </div>
+      <Button variant="contained" size="large" color="primary" onClick={fetchNext} style={{ position: "fixed", bottom: 0 }}>
+        SHOW ME MOAR
+      </Button>
     </ImageTextRecognitionProvider>
-    <Button variant="contained" size="large" color="primary" onClick={fetchNext} style={{ position: "fixed", bottom: 0 }}>
-      SHOW ME MOAR
-    </Button>
   </>;
 
   function onGameSelectChange({ name, checked }) {
