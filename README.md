@@ -1,3 +1,11 @@
+## TODO
+- [ ] don't use implicit OAuth
+- [ ] memorize OAuth token
+- [ ] show "show me moar" loading progress
+- [ ] show feedback for checking the box for a game
+- [ ] memorize selected games
+- [ ] misc. UI cleanup
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
