@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/jackbox-lobbies/static/css/main.5f361e03.chunk.css",
+    "main.js": "/jackbox-lobbies/static/js/main.87ebc43c.chunk.js",
+    "main.js.map": "/jackbox-lobbies/static/js/main.87ebc43c.chunk.js.map",
+    "runtime-main.js": "/jackbox-lobbies/static/js/runtime-main.3c4083ae.js",
+    "runtime-main.js.map": "/jackbox-lobbies/static/js/runtime-main.3c4083ae.js.map",
+    "static/js/2.04985918.chunk.js": "/jackbox-lobbies/static/js/2.04985918.chunk.js",
+    "static/js/2.04985918.chunk.js.map": "/jackbox-lobbies/static/js/2.04985918.chunk.js.map",
+    "index.html": "/jackbox-lobbies/index.html",
+    "precache-manifest.240e081219c1f41ed3d71c2af62e1a4a.js": "/jackbox-lobbies/precache-manifest.240e081219c1f41ed3d71c2af62e1a4a.js",
+    "service-worker.js": "/jackbox-lobbies/service-worker.js",
+    "static/css/main.5f361e03.chunk.css.map": "/jackbox-lobbies/static/css/main.5f361e03.chunk.css.map",
+    "static/js/2.04985918.chunk.js.LICENSE.txt": "/jackbox-lobbies/static/js/2.04985918.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.3c4083ae.js",
+    "static/js/2.04985918.chunk.js",
+    "static/css/main.5f361e03.chunk.css",
+    "static/js/main.87ebc43c.chunk.js"
+  ]
+}
