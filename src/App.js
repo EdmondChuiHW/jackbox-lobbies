@@ -1,25 +1,20 @@
+import { Button } from '@material-ui/core';
 import React from 'react';
 import { hot } from 'react-hot-loader/root';
 import './App.css';
-import logo from './logo.svg';
+import SignedInApp from './SignedInApp';
+import { useTwitchApi } from './TwitchApiContext';
 
 function App() {
+  const api = useTwitchApi();
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and saves to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {
+        api.hasAuth()
+          ? <SignedInApp />
+          : <Button color="primary" variant="contained" size="large" href={api.getAuthUrl()}>Login</Button>
+      }
     </div>
   );
 }
